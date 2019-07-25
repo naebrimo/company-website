@@ -42,7 +42,8 @@
     height: 64rem;
 }
 
-.carousel-image
+.carousel-image,
+.billboard-image
 {
     background-size: cover;
     background-repeat: no-repeat;
@@ -60,7 +61,8 @@
     width: 20%;
 }
 
-.carousel-caption
+.carousel-caption,
+.billboard-caption
 {
     position: absolute;
     top: 0;
@@ -93,12 +95,12 @@
     text-align: center!important;
 }
 
-.nav-item.active .nav-link::after
+.nav-link.active::after
 {
     width: 100%;
-    background: $blue;
+    background: rgba(255, 255, 255, 0.8);
 }
-.nav-item .nav-link::after
+.nav-link::after
 {
     display: block;
     margin: auto;
@@ -107,4 +109,34 @@
     width: 0;
     background: transparent;
     transition: width 0.5s ease, background-color 0.5s ease;
+}
+a#goTopBtn
+{
+    display:none;
+}
+a#goTopBtn.show
+{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    text-transform: capitalize!important;
+    z-index: 1030;
+    color: #fff;
+    background-color: $blue;
+    border-color: rgba(63,81,181,.9);
+    text-decoration: none;
+
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: .9rem;
+    line-height: 1.6;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

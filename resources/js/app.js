@@ -5,50 +5,10 @@
  */
 
 require('./bootstrap');
+require('./bootstrap.scroll.js');
 
-/**
- * This is scroll snippets
- *
- */
-function navbarBehavior()
-{
-    if($(window).scrollTop() > $('header:first-child').outerHeight())
-    {
-        if($('header:first-child > .navbar').hasClass('active'))
-        {
-            return false;
-        }
-        else
-        {
-            $('header:first-child > .navbar').toggleClass('active');
-        }
-    }
-    else
-    {
-        $('header:first-child > .navbar').removeClass('active');
-    }
-}
-$('#navbarToggle').on('shown.bs.collapse', function () {
-    if($('header:first-child > .navbar').hasClass('active'))
-    {
-        return false;
-    }
-    else
-    {
-        navbarBehavior();
-    }
-    $('header:first-child > .navbar').toggleClass('active');
-});
-$('#navbarToggle').on('hidden.bs.collapse', function () {
-    navbarBehavior();
-});
-$(window).on('scroll', function(){
-    $('#navbarToggle').collapse('hide');
-    navbarBehavior();
-});
-$(window).on('load', function(){
-    navbarBehavior();
-});
+
+
 
 
 window.Vue = require('vue');

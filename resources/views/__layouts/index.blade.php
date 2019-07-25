@@ -15,6 +15,7 @@
         <main>@yield('content')</main>
         @include('__includes/footer')
     </div>
+    <a id="goTopBtn" href="#{{ strtolower(config('app.name')) }}">go top</a>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

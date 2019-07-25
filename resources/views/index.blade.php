@@ -3,7 +3,7 @@
 @section('content')
     @include('__includes/carousel')
     @foreach($links as $link)
-        @if(!Route::has($link) && strtolower($link['href']) != strtolower(config('app.name')))
+        @if(!Route::has(explode('#', $link['href'])[0]) && strtolower($link['href']) != strtolower(config('app.name')))
             <section id="{{ strtolower($link['href']) }}" class="section">
                 <div class="container">
                     <h2 class="section-title">{{ $link['text'] }}</h2>
