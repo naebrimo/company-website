@@ -1,8 +1,93 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.bg-transparent
+{
+    background-color: transparent !important;
+}
+
+.navbar-dark.bg-translucent-blue
+{
+    background-color: linear-gradient($blue, rgba(63, 81, 181, 0.1)) !important;
+}
+.navbar-dark.bg-translucent-blue:hover,
+.navbar-dark.bg-translucent-blue:focus,
+.navbar-dark.bg-translucent-blue.active
+{
+    background-color: $blue !important;
+}
+
+.h-16
+{
+    height: 16rem;
+}
+.h-32
+{
+    height: 32rem;
+}
+.h-48
+{
+    height: 48rem;
+}
+.h-56
+{
+    height: 56rem;
+}
+.h-64
+{
+    height: 64rem;
+}
+
+.carousel-image
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+
+    width: 100vw;
+    display: block !important;
+}
+
+
+
+.carousel-control-next, .carousel-control-prev
+{
+    width: 20%;
+}
+
+.carousel-caption
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    left: 20%;
+    min-height: 16rem;
+    width: 60%;
+    right: 20%;
+}
+.section
+{
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+}
+.section .section-title,
+.section .article-title
+{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-transform: capitalize !important;
+}
+.section .section-title
+{
+    text-align: center!important;
+}
