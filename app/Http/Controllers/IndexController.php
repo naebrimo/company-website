@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
+use App\Carousel;
+use App\Navlinks;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->page = Page::where('id', 1)->first();
+    }
     /**
      * Show the index page.
      *
@@ -15,60 +21,15 @@ class IndexController extends Controller
 
     public function index()
     {
-        $carousels = [
-            [
-                'image' => 'boban-simonovski-akQ06aB6MfM-unsplash.jpg',
-                'caption' => [
-                    'title' => 'First Slide',
-                    'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui nunc mattis enim ut tellus elementum sagittis. Volutpat diam ut venenatis.',
-                    'link' => [
-                        'href' => 'index.our-partners',
-                        'text' => 'read more',
-                    ],
-                ],
-            ],
-            [
-                'image' => 'zhao-chen-Yx0sVL2H8pA-unsplash.jpg',
-                'caption' => [
-                    'title' => 'Second Slide',
-                    'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui nunc mattis enim ut tellus elementum sagittis. Volutpat diam ut venenatis.',
-                    'link' => [
-                        'href' => 'index.our-partners',
-                        'text' => 'read more',
-                    ],
-                ],
-            ],
-        ];
-        $links = [
-            [
-                'href' => strtolower(config('app.name')),
-                'text' => 'home',
-            ],
-            [
-                'href' => 'our-partners',
-                'text' => 'our partners',
-            ],
-            [
-                'href' => 'who-we-are',
-                'text' => 'who we are',
-            ],
-            [
-                'href' => 'what-we-do',
-                'text' => 'what we do',
-            ],
-            [
-                'href' => 'index.career.index#intro',
-                'text' => 'careers',
-            ],
-            [
-                'href' => 'contact-us',
-                'text' => 'contact us',
-            ],
-        ];
+        $navlinks = $this->page->navlinks()->get();
+        $carousels = $this->page->carousels()->get();
+        $animal = 'dog';
+
 
         return view('index', [
-            'links' => $links,
-            'carousels' => $carousels
+            'navlinks' => $navlinks,
+            'carousels' => $carousels,
+            'animal' => $animal,
         ]);
     }
 
