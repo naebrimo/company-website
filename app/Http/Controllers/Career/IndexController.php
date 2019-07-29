@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Career;
 
+use App\Page;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->page = Page::where('id', 19)->first();
+    }
     /**
      * Show the index page.
      *
@@ -16,45 +20,11 @@ class IndexController extends Controller
 
     public function index()
     {
-        $carousels = [
-            [
-                'image' => 'boban-simonovski-akQ06aB6MfM-unsplash.jpg',
-                'caption' => null,
-            ],
-            [
-                'image' => 'zhao-chen-Yx0sVL2H8pA-unsplash.jpg',
-                'caption' => null,
-            ],
-        ];
-        $links = [
-            [
-                'href' => strtolower(config('app.name')),
-                'text' => 'home',
-            ],
-            [
-                'href' => 'index#our-partners',
-                'text' => 'our partners',
-            ],
-            [
-                'href' => 'index#who-we-are',
-                'text' => 'who we are',
-            ],
-            [
-                'href' => 'index#what-we-do',
-                'text' => 'what we do',
-            ],
-            [
-                'href' => 'intro',
-                'text' => 'careers',
-            ],
-            [
-                'href' => 'contact-us',
-                'text' => 'contact us',
-            ],
-        ];
+        $navlinks = $this->page->navlinks()->get();
+        $carousels = $this->page->carousels()->get();
 
-        return view('careers/index', [
-            'links' => $links,
+        return view('index', [
+            'navlinks' => $navlinks,
             'carousels' => $carousels
         ]);
     }
