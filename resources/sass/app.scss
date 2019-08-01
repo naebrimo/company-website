@@ -95,12 +95,29 @@
     text-align: center!important;
 }
 
-.nav-link.active::after
+.nav.flex-column .nav-link
+{
+    border-left: solid 3px transparent;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.nav.flex-column .nav-link.active
+{
+    border-left: solid 3px $blue;
+}
+.nav.flex-column .nav-link:hover
+{
+    border-left: solid 3px rgba(63, 81, 181, 0.5);
+    transition: border-left 0.5s ease;
+}
+.navbar .nav-link.active::after
 {
     width: 100%;
     background: rgba(255, 255, 255, 0.8);
 }
-.nav-link::after
+.navbar .nav-link::after
 {
     display: block;
     margin: auto;
