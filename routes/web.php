@@ -59,15 +59,24 @@ Route::prefix('/career')->group(function(){
 
 Route::prefix('/dashboard')->group(function(){
     Route::get('/', 'Dashboard\IndexController@index')->name('index.dashboard.index');
+
+    Route::get('/pages', 'Dashboard\PageController@index')->name('index.dashboard.pages');
+    Route::get('/carousels', 'Dashboard\CarouselController@index')->name('index.dashboard.carousels');
+    Route::get('/navlinks', 'Dashboard\NavlinkController@index')->name('index.dashboard.navlinks');
+    Route::get('/articles', 'Dashboard\ArticleController@index')->name('index.dashboard.articles');
+    Route::get('/career-postings', 'Dashboard\CareerController@index')->name('index.dashboard.career-postings');
+    Route::get('/corporate-news', 'Dashboard\CorporateNewsController@index')->name('index.dashboard.corporate-news');
+
+
     Route::get('/login', 'Dashboard\LoginController@showLoginForm')->name('index.dashboard.login');
+    Route::get('password/reset', 'Dashboard\ForgotPasswordController@showLinkRequestForm')->name('dashboard.password.request');
+    Route::get('password/reset/{token}', 'Dashboard\ResetPasswordController@showResetForm')->name('dashboard.password.reset');
     Route::match(['get', 'post'], '/logout', 'Dashboard\LoginController@logout')->name('index.dashboard.logout');
     Route::post('/login', 'Dashboard\LoginController@login');
 
+    Route::post('password/email', 'Dashboard\ForgotPasswordController@sendResetLinkEmail')->name('dashboard.password.email');
+    Route::post('password/reset', 'Dashboard\ResetPasswordController@reset')->name('dashboard.password.update');
+
     // Route::get('register', 'Dashboard\RegisterController@showRegistrationForm')->name('dashboard.register');
     // Route::post('register', 'Dashboard\RegisterController@register');
-
-    Route::get('password/reset', 'Dashboard\ForgotPasswordController@showLinkRequestForm');
-    Route::post('password/email', 'Dashboard\ForgotPasswordController@sendResetLinkEmail');
-    Route::get('password/reset/{token}', 'Dashboard\ResetPasswordController@showResetForm');
-    Route::post('password/reset', 'Dashboard\ResetPasswordController@reset');
 });
