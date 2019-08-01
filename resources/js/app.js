@@ -5,11 +5,7 @@
  */
 
 require('./bootstrap');
-require('./bootstrap.scroll.js');
-
-
-
-
+require('./jquery.btntop.js');
 
 window.Vue = require('vue');
 
@@ -33,5 +29,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: '#' + document.head.querySelector("[name~=application-name][content]").content,
 });
