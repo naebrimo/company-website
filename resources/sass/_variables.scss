@@ -1,19 +1,32 @@
-// Body
-$body-bg: #f8fafc;
-
-// Typography
-//$font-family-sans-serif: 'Nunito', sans-serif;
+$blue: rgba(66,103,178,0.9);
+$indigo: rgb(101, 116, 205);
+$purple: rgb(149, 97, 226);
+$pink: rgb(246, 109, 155);
+$red: rgb(227, 52, 47);
+$orange: rgb(246, 153, 63);
+$yellow: rgb(255, 237, 74);
+$green: rgb(56, 193, 114);
+$teal: rgb(77, 192, 181);
+$cyan: rgb(108, 178, 235);
+$white: rgb(255, 255, 255);
+$gray: rgb(108, 117, 125);
+$gray-dark: rgb(52, 58, 64);
+$primary: hsla(231, 48%, 48%, 0.9);
+$secondary: rgb(108, 117, 125);
+$success: rgb(56, 193, 114);
+$info: rgb(108, 178, 235);
+$warning: rgb(255, 237, 74);
+$danger: rgb(227, 52, 47);
+$light: rgb(248, 249, 250);
+$dark: rgb(52, 58, 64);
+$breakpoint-xs: 0;
+$breakpoint-sm: 480px;
+$breakpoint-md: 736px;
+$breakpoint-lg: 980px;
+$breakpoint-xl: 1280px;
+$font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Calibri", "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+$font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// Colors
-$blue: rgba(63, 81, 181, 0.9);
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$body-bg: rgb(248, 250, 252);
