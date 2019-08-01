@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Page;
-use App\Carousel;
-use App\Navlinks;
-use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -13,24 +10,13 @@ class IndexController extends Controller
     {
         $this->page = Page::where('id', 1)->first();
     }
-    /**
-     * Show the index page.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
 
     public function index()
     {
         $navlinks = $this->page->navlinks()->get();
         $carousels = $this->page->carousels()->get();
-        $animal = 'dog';
 
-
-        return view('index', [
-            'navlinks' => $navlinks,
-            'carousels' => $carousels,
-            'animal' => $animal,
-        ]);
+        return view('index', compact('navlinks', 'carousels'));
     }
 
     /**
