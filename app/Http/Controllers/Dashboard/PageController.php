@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('dashboard/index');
+        return view('dashboard/pages/index');
     }
 
     /**
@@ -24,7 +28,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard/pages/createoredit');
     }
 
     /**
@@ -46,7 +50,7 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard/pages/show');
     }
 
     /**
@@ -57,7 +61,7 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard/pages/createoredit');
     }
 
     /**
