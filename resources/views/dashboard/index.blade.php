@@ -1,25 +1,21 @@
-@extends('__layouts/index')
-
-@section('content')
-    <section class="section">
-        <div class="container">
+@extends('__layouts/dashboard')
+@section('dashboardContent')
+    <div class="card mb-2">
+        <div class="card-body">
             <div class="row">
-                <aside class="col-md-2">
-                    @include('__includes/sidenav')
-                </aside>
-                <article class="col-md-10">
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <h2>Aliquip dolore exercitation excepteur sunt velit aliqua nostrud.</h2>
-                        </div>
+                <div class="col-6"><h2>welcome to dashboard</h2></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-primary" role="alert">
+                        This is were status will be placed.
                     </div>
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <h2>Aliquip dolore exercitation excepteur sunt velit aliqua nostrud.</h2>
-                        </div>
+                    <div class="alert alert-primary" role="alert">
+                        These is where the jump links will be placed.
                     </div>
-                </article>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
