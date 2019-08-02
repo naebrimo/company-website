@@ -24,6 +24,17 @@ class LoginController extends Controller
 
         return view('dashboard/login', compact('navlinks', 'carousels'));
     }
+
+    public function loginRedirect()
+    {
+        return redirect(route('index.dashboard.login'));
+    }
+
+    public function logoutRedirect()
+    {
+        return redirect(route('index.dashboard.logout'));
+    }
+
     protected function login(Request $request)
     {
         if(filter_var($request->usernameOrEmail, FILTER_VALIDATE_EMAIL))
