@@ -1,6 +1,6 @@
 <ul class="nav flex-column mb-3">
     <li class="nav-item">
-        <a class="nav-link text-capitalize {{ Route::currentRouteNamed('index.dashboard.index') ? 'active' : null }}" href="{{ route('index.dashboard.index') }}">home</a>
+        <a class="nav-link text-capitalize {{ Route::currentRouteNamed('index.dashboard') ? 'active' : null }}" href="{{ route('index.dashboard') }}">home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-capitalize {{ Route::currentRouteNamed('index.dashboard.pages') ? 'active' : null }}" href="{{ route('index.dashboard.pages') }}">pages</a>
