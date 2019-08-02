@@ -8,6 +8,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarToggle" class="collapse navbar-collapse">
+            @if(Auth::guard('admin')->check())
+                @if(Route::currentRouteNamed('index.dashboard*'))
+                    <ul class="navbar-nav ml-auto">
+                @else
+                    <ul class="navbar-nav mr-auto">
+                @endif
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdownUser" class="nav-link text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            logged in as: {{ Auth::guard('admin')->user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                            @if(Route::currentRouteNamed('index.dashboard*'))
+                                <a class="dropdown-item text-capitalize" href="{{ route('index') }}" title="{{ __('preview website') }}">{{ __('preview website') }}</a>
+                            @else
+                                <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.index') }}" title="{{ __('go to dashboard') }}">{{ __('go to dashboard') }}</a>
+                            @endif
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.logout') }}" title="{{ __('logout') }}">{{ __('logout') }}</a>
+                        </div>
+                    </li>
+                </ul>
+            @endif
             @if(isset($navlinks) && count($navlinks) > 0 )
                 <ul id="navbar-nav" class="navbar-nav ml-auto">
                     @foreach($navlinks as $navlink)
@@ -24,29 +46,6 @@
                         </li>
                     @endforeach
                 </ul>
-            @else
-                @if(Auth::guard('admin')->check())
-                    @if(Route::currentRouteNamed('index.dashboard*'))
-                        <ul class="navbar-nav ml-auto">
-                    @else
-                        <ul class="navbar-nav mr-auto">
-                    @endif
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdownUser" class="nav-link text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                logged in as: {{ Auth::guard('admin')->user()->name }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
-                                @if(Route::currentRouteNamed('index.dashboard*'))
-                                    <a class="dropdown-item text-capitalize" href="{{ route('index') }}" title="{{ __('preview website') }}">{{ __('preview website') }}</a>
-                                @else
-                                    <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.index') }}" title="{{ __('go to dashboard') }}">{{ __('go to dashboard') }}</a>
-                                @endif
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.logout') }}" title="{{ __('logout') }}">{{ __('logout') }}</a>
-                            </div>
-                        </li>
-                    </ul>
-                @endif
             @endif
         </div>
     </div>
