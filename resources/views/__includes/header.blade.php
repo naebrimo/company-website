@@ -22,7 +22,7 @@
                             @if(Route::currentRouteNamed('index.dashboard*'))
                                 <a class="dropdown-item text-capitalize" href="{{ route('index') }}" title="{{ __('preview website') }}">{{ __('preview website') }}</a>
                             @else
-                                <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.index') }}" title="{{ __('go to dashboard') }}">{{ __('go to dashboard') }}</a>
+                                <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard') }}" title="{{ __('go to dashboard') }}">{{ __('go to dashboard') }}</a>
                             @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-capitalize" href="{{ route('index.dashboard.logout') }}" title="{{ __('logout') }}">{{ __('logout') }}</a>
