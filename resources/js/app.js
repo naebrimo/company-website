@@ -7,6 +7,7 @@
 require('./bootstrap');
 require('./jquery.btntop.js');
 
+
 window.Vue = require('vue');
 
 /**
