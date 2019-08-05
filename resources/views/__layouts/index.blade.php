@@ -21,8 +21,11 @@
         <footer>
             @include('__includes/footer')
         </footer>
+        <a id="goTopBtn" href="#{{ strtolower(config('app.name')) }}">go top</a>
     </div>
-    <a id="goTopBtn" href="#{{ strtolower(config('app.name')) }}">go top</a>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js') }}"></script>
+    <script>$('textarea.ckeditor').ckeditor();</script>
 </body>
 </html>
