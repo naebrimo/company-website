@@ -24,6 +24,9 @@
             <hr />
             <div class="row">
                 <div class="col-12">
+                    <textarea class="ckeditor" hidden></textarea>
+                    <textarea class="ckeditor" hidden></textarea>
+                    <textarea class="ckeditor" hidden></textarea>
                     <h3>page tree</h3>
                     <ul>
                         <li>
