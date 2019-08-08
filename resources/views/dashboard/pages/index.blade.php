@@ -3,19 +3,24 @@
     <div class="card mb-2">
         <div class="card-body">
             <div class="row">
-                <div class="col-6"><h2>page</h2></div>
+                <div class="col-6">
+                    <h2 class="text-muted text-capitalize">page</h2>
+                </div>
                 <div class="col-6">
                     <form action="{{ route('index.dashboard.pages.create') }}" method="GET" enctype="multipart/form-data">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">new page after</span>
+                                <span class="input-group-text text-capitalize">create page after</span>
                             </div>
-                            <select class="custom-select" aria-label="page list">
-                                <option>---</option>
-                                <option>root</option>
+                            <select class="custom-select text-capitalize" aria-label="page list">
+                                <option value="null">---</option>
+                                <option value="root">/</option>
+                                @foreach($pages['root'] as $page)
+                                    <option value="{{ $page->id }}">/{{ $page->name }}</option>
+                                @endforeach
                             </select>
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">Create</button>
+                                <button class="btn btn-primary text-capitalize" type="submit">go</button>
                             </div>
                         </div>
                     </form>
@@ -24,10 +29,6 @@
             <hr />
             <div class="row">
                 <div class="col-12">
-                    <textarea class="ckeditor" hidden></textarea>
-                    <textarea class="ckeditor" hidden></textarea>
-                    <textarea class="ckeditor" hidden></textarea>
-                    <h3>page tree</h3>
                     <ul>
                         <li>
                             <a href="{{ route('index.dashboard.pages.show', 1) }}" class="btn btn-link text-capitalize p-0" title="click to rearrange, modify or delete">home</a>
