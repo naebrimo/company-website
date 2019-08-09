@@ -9,7 +9,7 @@
                 <form action="{{ route('index') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                            <input class="form-control" name="name" type="text" value="{{ old('message') }}" placeholder="Name" required autofocus/>
+                            <input class="form-control" name="name" type="text" value="{{ old('message') }}" placeholder="Name" required/>
                         </div>
                     <div class="form-group">
                         <input class="form-control" name="email" type="email" value="{{ old('message') }}" placeholder="Email" required />

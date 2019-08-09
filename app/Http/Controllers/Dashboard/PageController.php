@@ -22,29 +22,50 @@ class PageController extends Controller
     public function index()
     {
         // create page tree here
-        $pages['root'] = $this->treeDecrypt('pages');
+        $treeDecrypted = $this->treeDecrypt('pages');
+        $selectHtml = $this->treeToHtmlSelect($treeDecrypted);
 
+        // dd($selectHtml);
 
-
-        return view('dashboard/pages/index', compact('pages'));
+        return view('dashboard/pages/index', compact('selectHtml'));
     }
 
-    private function treeDecrypt($tableName, $parentId = null, $active = TRUE)
+    private function treeDecrypt($tableName, $active = TRUE, $parentId = 0)
     {
-        $index = $parentId;
-        if(is_null($parentId) || $parentId <= 0) $index = 0;
         if(!Schema::hasColumn($tableName, 'id')) return FALSE;
         if(!Schema::hasColumn($tableName, 'parent_id')) return FALSE;
         if(!Schema::hasColumn($tableName, 'name')) return FALSE;
         if(!Schema::hasColumn($tableName, 'active')) return FALSE;
 
-        $result[$index] = DB::table($tableName)
-            ->where('parent_id', $parentId)
-            ->where('active', $active)
-            ->orderBy('id')
-            ->get();
+        $sql  = 'SELECT DISTINCT(`parent_id`) ';
+        $sql .= 'FROM `'. $tableName .'` ';
+        $sql .= 'WHERE `active` = "' . $active . '" ';
+        $sql .= 'ORDER BY `id`';
 
+        $query = DB::select($sql);
+        $result = [];
+        foreach($query as $q)
+        {
+            $result[(is_null($q->parent_id)) ? 0: $q->parent_id] = DB::table($tableName)
+                ->where('parent_id', $q->parent_id)
+                ->where('active', $active)
+                ->orderby('id')
+                ->get();
+        }
         return $result;
+    }
+
+    private function treeToHtmlSelect($treeDecrypted, $branch = 0, $level = 0)
+    {
+        $select = '';
+        if($branch == 0) $select .= '<select class="custom-select text-capitalize" aria-label="page list">';
+        foreach($treeDecrypted[$branch] as $twig)
+        {
+            $select .= '<option value="'.$twig->id.'">'. $twig->name .'</option>';
+            if(isset($treeDecrypted[$twig->id])) $select .= $this->treeToHtmlSelect($treeDecrypted, $twig->id, $level + 1);
+        }
+        //if(!isset($treeDecrypted[$twig])) $select .= '</select>';
+        return $select;
     }
 
     /**

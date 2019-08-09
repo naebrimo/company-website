@@ -10,15 +10,9 @@
                     <form action="{{ route('index.dashboard.pages.create') }}" method="GET" enctype="multipart/form-data">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text text-capitalize">create page after</span>
+                                <span class="input-group-text text-capitalize">create page under</span>
                             </div>
-                            <select class="custom-select text-capitalize" aria-label="page list">
-                                <option value="null">---</option>
-                                <option value="root">/</option>
-                                @foreach($pages['root'] as $page)
-                                    <option value="{{ $page->id }}">/{{ $page->name }}</option>
-                                @endforeach
-                            </select>
+                            {{ 'sdfdsfds' }}
                             <div class="input-group-append">
                                 <button class="btn btn-primary text-capitalize" type="submit">go</button>
                             </div>
