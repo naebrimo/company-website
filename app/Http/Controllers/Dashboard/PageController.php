@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
-
-
+use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -21,35 +20,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        // create page tree here
         $pages = $this->treeDecrypt('pages');
-
         return view('dashboard/pages/index', compact('pages'));
-    }
-
-    private function treeDecrypt($tableName, $active = TRUE, $parentId = 0)
-    {
-        if(!Schema::hasColumn($tableName, 'id')) return FALSE;
-        if(!Schema::hasColumn($tableName, 'parent_id')) return FALSE;
-        if(!Schema::hasColumn($tableName, 'name')) return FALSE;
-        if(!Schema::hasColumn($tableName, 'active')) return FALSE;
-
-        $sql  = 'SELECT DISTINCT(`parent_id`) ';
-        $sql .= 'FROM `'. $tableName .'` ';
-        $sql .= 'WHERE `active` = "' . $active . '" ';
-        $sql .= 'ORDER BY `id`';
-
-        $query = DB::select($sql);
-        $result = [];
-        foreach($query as $q)
-        {
-            $result[(is_null($q->parent_id)) ? 0: $q->parent_id] = DB::table($tableName)
-                ->where('parent_id', $q->parent_id)
-                ->where('active', $active)
-                ->orderby('id')
-                ->get();
-        }
-        return $result;
     }
 
     /**
@@ -81,7 +53,14 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        return view('dashboard/pages/show');
+        $page = Page::where('id', $id)
+            ->where('active', TRUE)
+            ->first();
+        // add child of
+        // add page order
+        // add preview link
+
+        return view('dashboard/pages/show', compact('page'));
     }
 
     /**
@@ -116,5 +95,38 @@ class PageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Reorder tree by parent node from database
+     * @param string $tableName
+     * @param boolean $active
+     * @param integer $parentId
+     * @return mixed
+     *
+     */
+    private function treeDecrypt($tableName, $active = TRUE, $parentId = 0)
+    {
+        if(!Schema::hasColumn($tableName, 'id')) return FALSE;
+        if(!Schema::hasColumn($tableName, 'parent_id')) return FALSE;
+        if(!Schema::hasColumn($tableName, 'name')) return FALSE;
+        if(!Schema::hasColumn($tableName, 'active')) return FALSE;
+
+        $sql  = 'SELECT DISTINCT(`parent_id`) ';
+        $sql .= 'FROM `'. $tableName .'` ';
+        $sql .= 'WHERE `active` = "' . $active . '" ';
+        $sql .= 'ORDER BY `id`';
+
+        $query = DB::select($sql);
+        $result = [];
+        foreach($query as $q)
+        {
+            $result[(is_null($q->parent_id)) ? 0: $q->parent_id] = DB::table($tableName)
+                ->where('parent_id', $q->parent_id)
+                ->where('active', $active)
+                ->orderby('id')
+                ->get();
+        }
+        return $result;
     }
 }
