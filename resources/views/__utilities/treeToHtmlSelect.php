@@ -3,7 +3,7 @@ function treeToHtmlSelect($treeDecrypted, $branch = 0, $level = 0, $className = 
 {
     $select = '';
     if($branch === 0) $select .= '<select class="'.$className.'" aria-label="page list">';
-    if($branch === 0) $select .= '<option value="null" style="font-weight:bold;color:green;">page root</option>';
+    if($branch === 0) $select .= '<option value="null" style="font-weight:bold;color:green;">root</option>';
     foreach($treeDecrypted[$branch] as $twig)
     {
         $style = ($branch == 0) ? 'style="font-weight: bold;"' : '';
