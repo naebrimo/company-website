@@ -1,3 +1,5 @@
+@include('__utilities/treeToHtmlSelect')
+
 @extends('__layouts/dashboard')
 @section('dashboardContent')
     <div class="card mb-2">
@@ -12,7 +14,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-capitalize">create page under</span>
                             </div>
-                            {{ 'sdfdsfds' }}
+                            {!! treeToHtmlSelect($pages, 0, 'custom-select text-capitalize') !!}
                             <div class="input-group-append">
                                 <button class="btn btn-primary text-capitalize" type="submit">go</button>
                             </div>
