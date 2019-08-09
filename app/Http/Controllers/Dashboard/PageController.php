@@ -22,12 +22,9 @@ class PageController extends Controller
     public function index()
     {
         // create page tree here
-        $treeDecrypted = $this->treeDecrypt('pages');
-        $selectHtml = $this->treeToHtmlSelect($treeDecrypted);
+        $pages = $this->treeDecrypt('pages');
 
-        // dd($selectHtml);
-
-        return view('dashboard/pages/index', compact('selectHtml'));
+        return view('dashboard/pages/index', compact('pages'));
     }
 
     private function treeDecrypt($tableName, $active = TRUE, $parentId = 0)
@@ -53,19 +50,6 @@ class PageController extends Controller
                 ->get();
         }
         return $result;
-    }
-
-    private function treeToHtmlSelect($treeDecrypted, $branch = 0, $level = 0)
-    {
-        $select = '';
-        if($branch == 0) $select .= '<select class="custom-select text-capitalize" aria-label="page list">';
-        foreach($treeDecrypted[$branch] as $twig)
-        {
-            $select .= '<option value="'.$twig->id.'">'. $twig->name .'</option>';
-            if(isset($treeDecrypted[$twig->id])) $select .= $this->treeToHtmlSelect($treeDecrypted, $twig->id, $level + 1);
-        }
-        //if(!isset($treeDecrypted[$twig])) $select .= '</select>';
-        return $select;
     }
 
     /**
